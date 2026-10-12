@@ -8,6 +8,17 @@
         import { requireAuth } from "./dist/auth-guard.js";
         requireAuth(["admin", "moderator"]);
     </script>
+    <script src="dist/auth-guard.js" defer></script>
+    <script src="dist/admin.js" defer></script>
+
+    <form id="form-jenis-antrian">
+        <input type="text" id="kode-antrian" maxlength="1" placeholder="Kode (misal: C)" required>
+        <input type="text" id="nama-antrian" placeholder="Nama Layanan" required>
+        <button type="submit">Tambah</button>
+    </form>
+
+    <div id="list-jenis-antrian"></div>
+
 </head>
 <body>
     
