@@ -12,7 +12,7 @@
         <h2>Login</h2>
         <p>Masukkan username dan password Anda.</p>
 
-        <form class="login-form">
+        <form id="loginForm" class="login-form">
             <div class="input-login">
                 <label for="username">Username</label><br>
                 <input type="text" id="username" name="username" required><br>
@@ -21,10 +21,10 @@
                 <label for="password">Password</label><br>
                 <input type="password" id="password" name="password" required><br>
             </div>
-            <button type="submit" value="submit">Masuk</button>
-            <p id="loginMessage" role="status"></p>
+            <button id="loginBtn" type="submit">Masuk</button>
+            <p id="errorMessage" role="status"></p>
         </form>   
     </div>
-    <script type="module" src="dist/login.js" defer></script>
+    <script type="module" src="dist/login.js"></script>
 </body>
 </html>

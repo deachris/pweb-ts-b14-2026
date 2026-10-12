@@ -1,26 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Admin</title>
+    <meta name="theme-color" content="#7c7b1b">
+    <link rel="stylesheet" href="style.css">
+    <title>Dashboard Admin - Sistem Antrean</title>
     <script type="module">
         import { requireAuth } from "./dist/auth-guard.js";
         requireAuth(["admin", "moderator"]);
     </script>
-    <script src="dist/auth-guard.js" defer></script>
-    <script src="dist/admin.js" defer></script>
-
-    <form id="form-jenis-antrian">
-        <input type="text" id="kode-antrian" maxlength="1" placeholder="Kode (misal: C)" required>
-        <input type="text" id="nama-antrian" placeholder="Nama Layanan" required>
-        <button type="submit">Tambah</button>
-    </form>
-
-    <div id="list-jenis-antrian"></div>
-
 </head>
-<body>
-    
+<body class="app-page">
+    <main class="dashboard">
+        <section class="dashboard-toolbar">
+            <div class="page-heading">
+                <h1>Dashboard Admin</h1>
+                <p>Reset setiap hari agar penomoran antrean mulai dari awal.</p>
+                <a class="public-page-link" href="ambil-antrian.html" target="_blank" rel="noopener">Buka halaman pengunjung ↗</a>
+            </div>
+            <div class="dashboard-actions">
+                <span id="active-user-greeting" class="active-user-greeting"></span>
+                <button id="reset-antrian" class="button button-danger" type="button">Reset Antrian</button>
+                <button id="logout-button" class="button button-outline" type="button">Keluar</button>
+            </div>
+        </section>
+
+        <section class="dashboard-grid" aria-label="Pengelolaan antrean">
+            <article class="panel" id="jenis-antrian">
+                <div class="panel-heading">
+                    <h2>Jenis antrean</h2>
+                </div>
+                <form id="form-jenis-antrian" class="type-form">
+                    <div class="form-field code-field">
+                        <label for="kode-antrian">Kode</label>
+                        <input type="text" id="kode-antrian" maxlength="1" pattern="[A-Za-z]" placeholder="A" autocomplete="off" required>
+                    </div>
+                    <div class="form-field name-field">
+                        <label for="nama-antrian">Nama</label>
+                        <input type="text" id="nama-antrian" maxlength="60" placeholder="Contoh: Farmasi" required>
+                    </div>
+                    <button class="button button-primary add-type-button" type="submit">Tambah</button>
+                </form>
+                <div id="list-jenis-antrian" class="queue-type-list" aria-live="polite"></div>
+            </article>
+
+            <article class="panel" id="penerbitan-tiket">
+                <div class="panel-heading">
+                    <h2>Terbitkan tiket</h2>
+                </div>
+                <form id="form-terbitkan-tiket" class="ticket-form">
+                    <div class="form-field ticket-type-field">
+                        <label for="jenis-tiket">Jenis antrean</label>
+                    <select id="jenis-tiket" required>
+                        <option value="">Pilih jenis antrean</option>
+                    </select>
+                    </div>
+                    <div class="form-field priority-field">
+                        <label for="prioritas-tiket">Prioritas</label>
+                    <select id="prioritas-tiket" required>
+                        <option value="Normal">Normal</option>
+                        <option value="Lansia">Lansia</option>
+                        <option value="Disabilitas">Disabilitas</option>
+                        <option value="VIP">VIP</option>
+                    </select>
+                    </div>
+                    <button class="button button-primary issue-ticket-button" type="submit">Terbitkan</button>
+                </form>
+                <div id="list-tiket" class="ticket-list" aria-live="polite"></div>
+            </article>
+        </section>
+    </main>
+    <script type="module" src="dist/admin.js"></script>
 </body>
 </html>

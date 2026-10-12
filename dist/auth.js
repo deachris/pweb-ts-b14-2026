@@ -41,8 +41,6 @@ export async function loginUser(username, password) {
         throw new Error("Role pengguna tidak dikenali.");
     }
     return {
-        token: authData.accessToken,
-        user,
-        role
+        token: authData.accessToken, user, role
     };
 }

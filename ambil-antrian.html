@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7c7b1b">
+    <link rel="stylesheet" href="style.css">
+    <title>Ambil Antrean - Sistem Antrean</title>
+</head>
+<body class="app-page self-service-page">
+    <header class="app-header">
+        <a class="brand" href="ambil-antrian.html">Sistem Antrean</a>
+        <nav class="main-nav" aria-label="Navigasi utama">
+            <a href="index.html">Dashboard admin</a>
+        </nav>
+    </header>
+    <main class="self-service">
+        <section class="page-heading">
+            <p class="eyebrow">LAYANAN MANDIRI</p>
+            <h1>Ambil nomor antrean</h1>
+            <p>Pilih layanan yang tersedia untuk mendapatkan tiket antrean.</p>
+        </section>
+        <section class="panel self-service-panel">
+            <label for="jenis-pengunjung">Pilih layanan</label>
+            <select id="jenis-pengunjung">
+                <option value="">Memuat layanan...</option>
+            </select>
+            <button id="ambil-tiket" class="button button-primary button-large" type="button">Ambil tiket</button>
+            <p id="pesan-antrian" class="help-text" role="status" aria-live="polite"></p>
+            <article id="tiket-hasil" class="printed-ticket" hidden>
+                <p class="eyebrow">NOMOR ANTREAN ANDA</p>
+                <strong id="nomor-hasil" class="printed-ticket-number"></strong>
+                <p id="layanan-hasil"></p>
+                <p>Prioritas: Normal</p>
+                <button id="cetak-tiket" class="button button-secondary" type="button">Cetak tiket</button>
+            </article>
+        </section>
+    </main>
+    <script type="module" src="dist/ambil-antrian.js"></script>
+</body>
+</html>
