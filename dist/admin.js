@@ -1,5 +1,5 @@
 import { logout } from "./auth-guard.js";
-import { issueTicket, getJenisAntrian, getTickets, resetQueue, saveJenisAntrian, updateTicketStatus } from "./queue-store.js";
+import { issueTicket, getJenisAntrian, getTickets, resetQueue, saveJenisAntrian, updateTicketStatus } from "./buat-antrian.js";
 import { getSession } from "./session.js";
 const jenisForm = document.getElementById("form-jenis-antrian");
 const kodeInput = document.getElementById("kode-antrian");

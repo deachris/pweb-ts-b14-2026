@@ -1,5 +1,5 @@
 import { logout } from "./auth-guard.js";
-import { issueTicket, getJenisAntrian, getTickets, resetQueue, saveJenisAntrian, updateTicketStatus } from "./queue-store.js";
+import { issueTicket, getJenisAntrian, getTickets, resetQueue, saveJenisAntrian, updateTicketStatus } from "./buat-antrian.js";
 import { getSession } from "./session.js";
 import type { JenisAntrian, Prioritas, Tiket } from "./types.js";
 

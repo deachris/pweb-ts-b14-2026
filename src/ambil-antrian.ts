@@ -1,4 +1,4 @@
-import { getJenisAntrian, issueTicket } from "./queue-store.js";
+import { getJenisAntrian, issueTicket } from "./buat-antrian.js";
 
 const queueSelect = document.getElementById("jenis-pengunjung") as HTMLSelectElement;
 const issueButton = document.getElementById("ambil-tiket") as HTMLButtonElement;
