@@ -1,10 +1,10 @@
-// Nama key untuk menyimpan sesi di localStorage
+// Key untuk menyimpan sesi di Local Storage
 const SESSION_KEY = "authSession";
 // Menyimpan sesi pengguna
 export function saveSession(session) {
     localStorage.setItem(SESSION_KEY, JSON.stringify(session));
 }
-// Membaca dan memeriksa format sesi
+// Mengambil dan memvalidasi sesi pengguna
 export function getSession() {
     try {
         const data = localStorage.getItem(SESSION_KEY);
@@ -12,8 +12,17 @@ export function getSession() {
             return null;
         }
         const session = JSON.parse(data);
-        if (typeof session !== "object" || session === null || !("token" in session) || !("role" in session) ||
-            !("user" in session) || typeof session.token !== "string" || typeof session.role !== "string") {
+        if (typeof session !== "object" ||
+            session === null ||
+            !("token" in session) ||
+            !("role" in session) ||
+            !("user" in session) ||
+            typeof session.token !== "string" ||
+            typeof session.role !== "string") {
+            return null;
+        }
+        // Memastikan role sesuai dengan yang diizinkan
+        if (!["admin", "moderator", "user"].includes(session.role)) {
             return null;
         }
         return session;
@@ -22,11 +31,11 @@ export function getSession() {
         return null;
     }
 }
-// Memeriksa apakah sesi tersedia
+// Memeriksa apakah pengguna sudah login
 export function isLoggedIn() {
     return getSession() !== null;
 }
-// Menghapus sesi pengguna
+// Menghapus sesi saat logout
 export function clearSession() {
     localStorage.removeItem(SESSION_KEY);
 }

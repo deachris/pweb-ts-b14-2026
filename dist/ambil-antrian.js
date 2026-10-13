@@ -1,10 +1,14 @@
+import { requireAuth } from "./auth-guard.js";
 import { getJenisAntrian, issueTicket } from "./buat-antrian.js";
+requireAuth(["user"]);
 const queueSelect = document.getElementById("jenis-pengunjung");
+const prioritySelect = document.getElementById("prioritas-pengunjung");
 const issueButton = document.getElementById("ambil-tiket");
 const message = document.getElementById("pesan-antrian");
 const ticketCard = document.getElementById("tiket-hasil");
 const ticketNumber = document.getElementById("nomor-hasil");
 const ticketService = document.getElementById("layanan-hasil");
+const ticketPriority = document.getElementById("prioritas-hasil");
 const printButton = document.getElementById("cetak-tiket");
 function renderQueueOptions() {
     const currentValue = queueSelect.value;
@@ -33,12 +37,14 @@ issueButton.addEventListener("click", () => {
         return;
     }
     try {
-        const ticket = issueTicket(code, "Normal");
+        const priority = prioritySelect.value;
+        const ticket = issueTicket(code, priority);
         const service = getJenisAntrian().find((item) => item.kode === code);
         if (!service)
             throw new Error("Layanan sudah tidak tersedia. Silakan pilih layanan lain.");
         ticketNumber.textContent = ticket.nomor;
         ticketService.textContent = service.nama;
+        ticketPriority.textContent = `Prioritas: ${ticket.prioritas}`;
         ticketCard.hidden = false;
         message.textContent = "Tiket berhasil dibuat. Silakan cetak dan tunggu nomor Anda dipanggil.";
     }

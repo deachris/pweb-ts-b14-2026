@@ -13,7 +13,6 @@ if (!loginForm || !usernameInput || !passwordInput || !loginBtn || !errorMessage
 // Pengiriman form
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    // Mengambil nilai input
     const username = usernameInput.value.trim();
     const password = passwordInput.value;
     errorMessage.textContent = "";
@@ -27,7 +26,7 @@ loginForm.addEventListener("submit", async (event) => {
     loginBtn.textContent = "Memverifikasi...";
     errorMessage.textContent = "Sedang memverifikasi login...";
     try {
-        // Meminta API memverifikasi akun
+        // Memverifikasi akun melalui API
         const session = await loginUser(username, password);
         // Menyimpan sesi pengguna
         saveSession(session);
@@ -36,14 +35,14 @@ loginForm.addEventListener("submit", async (event) => {
             window.location.replace("index.html");
         }
         else if (session.role === "user") {
-            window.location.replace("operator.html");
+            window.location.replace("ambil-antrian.html");
         }
         else {
             errorMessage.textContent = "Role akun tidak dikenali.";
         }
     }
     catch (error) {
-        // Menampilkan pesan jika login gagal
+        // Menangani kesalahan login dan koneksi
         if (error instanceof TypeError) {
             errorMessage.textContent =
                 "Tidak dapat terhubung ke server. Periksa koneksi internet.";
@@ -57,7 +56,6 @@ loginForm.addEventListener("submit", async (event) => {
         }
     }
     finally {
-        // Mengembalikan tombol ke kondisi awal
         loginBtn.disabled = false;
         loginBtn.textContent = "Masuk";
     }

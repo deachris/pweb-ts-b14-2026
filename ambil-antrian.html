@@ -11,7 +11,7 @@
     <header class="app-header">
         <a class="brand" href="ambil-antrian.html">Sistem Antrean</a>
         <nav class="main-nav" aria-label="Navigasi utama">
-            <a href="index.html">Dashboard admin</a>
+            <a href="layar.html">Layar antrean</a>
         </nav>
     </header>
     <main class="self-service">
@@ -25,13 +25,20 @@
             <select id="jenis-pengunjung">
                 <option value="">Memuat layanan...</option>
             </select>
+            <label for="prioritas-pengunjung">Pilih prioritas</label>
+            <select id="prioritas-pengunjung">
+                <option value="Normal">Normal</option>
+                <option value="Lansia">Lansia</option>
+                <option value="Disabilitas">Disabilitas</option>
+                <option value="VIP">VIP</option>
+            </select>
             <button id="ambil-tiket" class="button button-primary button-large" type="button">Ambil tiket</button>
             <p id="pesan-antrian" class="help-text" role="status" aria-live="polite"></p>
             <article id="tiket-hasil" class="printed-ticket" hidden>
                 <p class="eyebrow">NOMOR ANTREAN ANDA</p>
                 <strong id="nomor-hasil" class="printed-ticket-number"></strong>
                 <p id="layanan-hasil"></p>
-                <p>Prioritas: Normal</p>
+                <p id="prioritas-hasil"></p>
                 <button id="cetak-tiket" class="button button-secondary" type="button">Cetak tiket</button>
             </article>
         </section>
