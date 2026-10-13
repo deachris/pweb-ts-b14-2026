@@ -1,6 +1,6 @@
 const API_URL = "https://dummyjson.com";
 
-// Struktur data pengguna yang diterima dari API
+// Struktur data pengguna dari API
 export interface AuthUser {
     id: number;
     username: string;
@@ -10,20 +10,20 @@ export interface AuthUser {
     role: string;
 }
 
-// Struktur respons saat login
+// Struktur respons login
 export interface AuthResponse {
     accessToken: string;
     refreshToken?: string;
 }
 
-// Data sesi yang digunakan aplikasi
+// Struktur sesi pengguna
 export interface AuthSession {
     token: string;
     user: AuthUser;
     role: string;
 }
 
-// Mengirim username dan password ke API
+// Fungsi login
 export async function loginUser(
     username: string,
     password: string
@@ -40,17 +40,18 @@ export async function loginUser(
         })
     });
 
-    // Gagal login
+    // Memeriksa hasil login
     if (!response.ok) {
         if (response.status === 400) {
             throw new Error("Username atau password salah.");
         }
+
         throw new Error("Login gagal. Silakan coba lagi.");
     }
 
     const authData: AuthResponse = await response.json();
 
-    // Mengambil informasi pengguna menggunakan token
+    // Mengambil informasi pengguna
     const userResponse = await fetch(`${API_URL}/auth/me`, {
         method: "GET",
         headers: {
@@ -64,19 +65,17 @@ export async function loginUser(
 
     const user: AuthUser = await userResponse.json();
 
-    // Memastikan API memberikan role
-    if (!user.role) {
-        throw new Error("Role pengguna tidak tersedia dari API.");
-    }
+    // Memeriksa role pengguna
+    const role = user.role?.toLowerCase();
 
-    const role = user.role.toLowerCase();
-
-    // Membatasi role yang dikenal aplikasi
-    if (!["admin", "moderator", "user"].includes(role)) {
+    if (!role || !["admin", "moderator", "user"].includes(role)) {
         throw new Error("Role pengguna tidak dikenali.");
     }
 
+    // Mengembalikan data sesi
     return {
-        token: authData.accessToken, user, role
+        token: authData.accessToken,
+        user,
+        role
     };
 }

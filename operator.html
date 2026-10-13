@@ -6,7 +6,7 @@
     <title>Halaman Operator</title>
     <script type="module">
         import { requireAuth } from "./dist/auth-guard.js";
-        requireAuth(["user"]);
+        requireAuth(["admin", "moderator"]);
     </script>
 </head>
 <body>
