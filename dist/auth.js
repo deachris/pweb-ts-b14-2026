@@ -20,6 +20,12 @@ export async function loginUser(username, password) {
         throw new Error("Login gagal. Silakan coba lagi.");
     }
     const authData = await response.json();
+<<<<<<< HEAD
+=======
+    if (!authData.accessToken) {
+        throw new Error("Token login tidak ditemukan.");
+    }
+>>>>>>> 1a2cd64dc3b8a1e0e011c9471b35c3e666310c61
     // Mengambil informasi pengguna
     const userResponse = await fetch(`${API_URL}/auth/me`, {
         method: "GET",

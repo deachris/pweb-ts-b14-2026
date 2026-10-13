@@ -19,6 +19,7 @@ export function getSession(): AuthSession | null {
 
         const session: unknown = JSON.parse(data);
 
+        // Memeriksa struktur sesi
         if (
             typeof session !== "object" ||
             session === null ||
@@ -26,17 +27,26 @@ export function getSession(): AuthSession | null {
             !("role" in session) ||
             !("user" in session) ||
             typeof session.token !== "string" ||
-            typeof session.role !== "string"
+            !session.token.trim() ||
+            typeof session.role !== "string" ||
+            typeof session.user !== "object" ||
+            session.user === null
         ) {
             return null;
         }
 
         // Memastikan role sesuai dengan yang diizinkan
-        if (!["admin", "moderator", "user"].includes(session.role as string)) {
+        const role = session.role.toLowerCase();
+
+        if (!["admin", "moderator", "user"].includes(role)) {
             return null;
         }
 
-        return session as AuthSession;
+        // Mengembalikan sesi yang valid
+        return {
+            ...(session as AuthSession),
+            role
+        };
     } catch {
         return null;
     }

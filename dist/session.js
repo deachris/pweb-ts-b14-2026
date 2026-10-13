@@ -12,20 +12,40 @@ export function getSession() {
             return null;
         }
         const session = JSON.parse(data);
+<<<<<<< HEAD
+=======
+        // Memeriksa struktur sesi
+>>>>>>> 1a2cd64dc3b8a1e0e011c9471b35c3e666310c61
         if (typeof session !== "object" ||
             session === null ||
             !("token" in session) ||
             !("role" in session) ||
             !("user" in session) ||
             typeof session.token !== "string" ||
+<<<<<<< HEAD
             typeof session.role !== "string") {
             return null;
         }
         // Memastikan role sesuai dengan yang diizinkan
         if (!["admin", "moderator", "user"].includes(session.role)) {
+=======
+            !session.token.trim() ||
+            typeof session.role !== "string" ||
+            typeof session.user !== "object" ||
+            session.user === null) {
+>>>>>>> 1a2cd64dc3b8a1e0e011c9471b35c3e666310c61
             return null;
         }
-        return session;
+        // Memastikan role sesuai dengan yang diizinkan
+        const role = session.role.toLowerCase();
+        if (!["admin", "moderator", "user"].includes(role)) {
+            return null;
+        }
+        // Mengembalikan sesi yang valid
+        return {
+            ...session,
+            role
+        };
     }
     catch {
         return null;
