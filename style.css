@@ -221,7 +221,7 @@ body {
     --accent: #7c7b1b;
     --accent-dark: #626113;
     display: block;
-    background: transparent;
+    background-color: transparent;
     min-height: 100vh;
     height: auto;
     overflow: auto;
@@ -610,7 +610,7 @@ body {
 }
 
 .app-page:has(.dashboard) {
-    background: transparent;
+    background-color: transparent;
     color: #182230;
 }
 

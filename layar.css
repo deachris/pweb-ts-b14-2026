@@ -1,8 +1,13 @@
 body {
+    background-image: url("./image/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     font-family: Arial, sans-serif;
     color: #222;
-    background: #f4f4f4;
+    background-color: #f4f4f4;
 }
 
 .screen-header {

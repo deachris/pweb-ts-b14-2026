@@ -2,7 +2,7 @@ import { requireAuth } from "./auth-guard.js";
 import { getJenisAntrian, issueTicket } from "./buat-antrian.js";
 import type { Prioritas } from "./types.js";
 
-requireAuth(["user"]);
+requireAuth(["user", "admin", "moderator"]);
 const queueSelect = document.getElementById("jenis-pengunjung") as HTMLSelectElement;
 const prioritySelect = document.getElementById("prioritas-pengunjung") as HTMLSelectElement;
 const issueButton = document.getElementById("ambil-tiket") as HTMLButtonElement;
