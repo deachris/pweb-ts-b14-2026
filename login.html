@@ -7,23 +7,34 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="login-box">
-        <h1 id="loginTitle">Welcome Back!</h1>
-        <h2>Login</h2>
-        <p>Masukkan username dan password Anda.</p>
+    <div class="decoration">
+        <div class="gambar">
+            <img src="/image/decoration.png" alt="Rumah Sakit" class="background">
+            <img src="image/logo.png" alt="Logo" class="logo">
+            <h1>Layananan Antrean Rumah Sakit</h1>
+            <h2>Pelayanan lebih mudah, antrean lebih teratur.</h2>
+            <h2>Kesehatan Anda, Prioritas Kami</h2>
+        </div>
+    </div>
+    <div class="login">
+        <div class="login-box">
+            <h1 id="loginTitle">Welcome Back!</h1>
+            <h2>Login</h2>
+            <p>Masukkan username dan password Anda.</p>
 
-        <form id="loginForm" class="login-form">
-            <div class="input-login">
-                <label for="username">Username</label><br>
-                <input type="text" id="username" name="username" required><br>
-            </div>
-            <div class="input-login">
-                <label for="password">Password</label><br>
-                <input type="password" id="password" name="password" required><br>
-            </div>
-            <button id="loginBtn" type="submit">Masuk</button>
-            <p id="errorMessage" role="status"></p>
-        </form>   
+            <form id="loginForm" class="login-form">
+                <div class="input-login">
+                    <label for="username">Username</label><br>
+                    <input type="text" id="username" name="username" required><br>
+                </div>
+                <div class="input-login">
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" name="password" required><br>
+                </div>
+                <button id="loginBtn" type="submit">Masuk</button>
+                <p id="errorMessage" role="status"></p>
+            </form>   
+        </div>
     </div>
     <script type="module" src="dist/login.js"></script>
 </body>
