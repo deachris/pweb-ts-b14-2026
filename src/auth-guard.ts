@@ -7,7 +7,7 @@ export type AllowedRole = "admin" | "moderator" | "user";
 export function requireAuth(allowedRoles?: AllowedRole[]): void {
     const session = getSession();
 
-    // Jika belum login, kembali ke halaman login
+    // Jika sesi atau token tidak tersedia, kembali ke login
     if (!session || !session.token) {
         window.location.replace("login.html");
         return;
@@ -16,7 +16,7 @@ export function requireAuth(allowedRoles?: AllowedRole[]): void {
     // Mengambil role pengguna
     const role = session.role.toLowerCase();
 
-    // Memeriksa apakah role dikenali
+    // Memeriksa role yang diizinkan
     const validRoles: AllowedRole[] = [
         "admin",
         "moderator",

@@ -1,5 +1,5 @@
 const API_URL = "https://dummyjson.com";
-// Mengirim username dan password ke API
+// Fungsi login
 export async function loginUser(username, password) {
     const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
@@ -12,7 +12,7 @@ export async function loginUser(username, password) {
             expiresInMins: 30
         })
     });
-    // Gagal login
+    // Memeriksa hasil login
     if (!response.ok) {
         if (response.status === 400) {
             throw new Error("Username atau password salah.");
@@ -20,7 +20,10 @@ export async function loginUser(username, password) {
         throw new Error("Login gagal. Silakan coba lagi.");
     }
     const authData = await response.json();
-    // Mengambil informasi pengguna menggunakan token
+    if (!authData.accessToken) {
+        throw new Error("Token login tidak ditemukan.");
+    }
+    // Mengambil informasi pengguna
     const userResponse = await fetch(`${API_URL}/auth/me`, {
         method: "GET",
         headers: {
@@ -31,16 +34,15 @@ export async function loginUser(username, password) {
         throw new Error("Gagal mengambil data pengguna.");
     }
     const user = await userResponse.json();
-    // Memastikan API memberikan role
-    if (!user.role) {
-        throw new Error("Role pengguna tidak tersedia dari API.");
-    }
-    const role = user.role.toLowerCase();
-    // Membatasi role yang dikenal aplikasi
-    if (!["admin", "moderator", "user"].includes(role)) {
+    // Memeriksa role pengguna
+    const role = user.role?.toLowerCase();
+    if (!role || !["admin", "moderator", "user"].includes(role)) {
         throw new Error("Role pengguna tidak dikenali.");
     }
+    // Mengembalikan data sesi
     return {
-        token: authData.accessToken, user, role
+        token: authData.accessToken,
+        user,
+        role
     };
 }

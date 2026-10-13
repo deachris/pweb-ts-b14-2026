@@ -1,4 +1,7 @@
 import { getJenisAntrian, issueTicket } from "./buat-antrian.js";
+import { requireAuth } from "./auth-guard.js";
+
+requireAuth(["admin", "moderator", "user"]);
 
 const queueSelect = document.getElementById("jenis-pengunjung") as HTMLSelectElement;
 const issueButton = document.getElementById("ambil-tiket") as HTMLButtonElement;
