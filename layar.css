@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: #f4f4f4;
+}
+
+.screen-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.screen-header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+button {
+    margin-left: 6px;
+    padding: 9px 14px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.screen-main {
+    padding: 24px;
+}
+
+.current-section {
+    margin-bottom: 28px;
+    padding: 24px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+#screen-current-number {
+    margin: 20px 0 8px;
+    font-size: 64px;
+}
+
+.queue-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.queue-card {
+    padding: 18px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.queue-card h3 {
+    margin-top: 0;
+}

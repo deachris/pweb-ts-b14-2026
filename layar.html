@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="layar.css">
+    <title>Layar Antrean</title>
+    <script type="module" src="dist/layar.js"></script>
+</head>
+<body>
+    <header class="screen-header">
+        <h1>Layar Antrean Rumah Sakit</h1>
+        <div>
+            <button id="fullscreen-toggle" type="button">Layar Penuh</button>
+            <button id="screen-logout" type="button">Logout</button>
+        </div>
+    </header>
+
+    <main class="screen-main">
+        <section class="current-section">
+            <h2>Nomor yang Sedang Dipanggil</h2>
+            <h3 id="screen-current-number">—</h3>
+            <p id="screen-current-service">Belum ada nomor yang dipanggil.</p>
+        </section>
+
+        <section>
+            <h2>Status Setiap Jenis Antrean</h2>
+            <div id="queue-cards" class="queue-cards"></div>
+        </section>
+    </main>
+</body>
+</html>
